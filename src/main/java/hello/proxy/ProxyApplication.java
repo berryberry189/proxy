@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 // @Import(AppV1Config.class) // 스프인 빈 등록
-@Import(AppV2Config.class)
+@Import({AppV1Config.class, AppV2Config.class})
 @SpringBootApplication(scanBasePackages = "hello.proxy.app") // 컴포넌트 스텐 범위 지정
 public class ProxyApplication {
 
