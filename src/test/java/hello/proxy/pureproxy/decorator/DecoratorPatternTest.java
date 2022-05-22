@@ -15,4 +15,5 @@ public class DecoratorPatternTest {
         DecoratorPatternClient client = new DecoratorPatternClient(component);
         client.execute();
     }
+
 }
