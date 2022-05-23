@@ -19,6 +19,7 @@ public class DecoratorPatternTest {
 
     @Test
     void decorator1(){
+        // client 를 수정하지 않고 로그를 남길 수 있게 되었다.
         Component realComponent = new RealComponent();
         Component messageDecorator = new MessageDecorator(realComponent);
         DecoratorPatternClient client = new DecoratorPatternClient(messageDecorator);
