@@ -21,15 +21,17 @@ public class TraceId {
         return UUID.randomUUID().toString().substring(0, 8);
     }
 
-    public TraceId createNextId() {
+    // id는 같고 깊이만 달라짐
+    public TraceId createNextId(){
         return new TraceId(id, level + 1);
     }
 
-    public TraceId createPreviousId() {
+    public TraceId createPreviousId(){
         return new TraceId(id, level - 1);
     }
 
-    public boolean isFirstLevel() {
+    // 첫 레벨인지 확인
+    public boolean isFirstLevel(){
         return level == 0;
     }
 
