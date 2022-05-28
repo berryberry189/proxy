@@ -12,4 +12,5 @@ public class ConcreteProxyTest {
         ConcreteClient client = new ConcreteClient(concreteLogic);
         client.execute();
     }
+
 }
