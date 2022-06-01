@@ -24,7 +24,7 @@ public class OrderControllerConcreteProxy extends OrderControllerV2 {
             // target 호출
             String result = target.request(itemId);
             logTrace.end(status);
-            return null;
+            return result;
         } catch (Exception e) {
             logTrace.exception(status, e);
             throw e;
