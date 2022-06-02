@@ -31,4 +31,5 @@ public class OrderControllerInterfaceProxy implements OrderControllerV1 {
         // 어떠한 이유로 인하여 로그를 찍지 않는 경우
         return target.noLog();
     }
+
 }
