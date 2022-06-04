@@ -5,7 +5,7 @@ import hello.proxy.pureproxy.concreteproxy.code.ConcreteLogic;
 import hello.proxy.pureproxy.concreteproxy.code.TimeProxy;
 import org.junit.jupiter.api.Test;
 
-public class ConcreteProxyTest {
+class ConcreteProxyTest {
 
     @Test
     void noProxy(){
