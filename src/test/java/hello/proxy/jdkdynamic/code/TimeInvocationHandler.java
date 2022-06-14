@@ -17,7 +17,7 @@ public class TimeInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        log.info("TimeProxy 실핼");
+        log.info("TimeProxy 실행");
         long startTime = System.currentTimeMillis();
 
         Object result = method.invoke(target, args);
