@@ -27,4 +27,5 @@ public class TimeInvocationHandler implements InvocationHandler {
 
         return result;
     }
+
 }
