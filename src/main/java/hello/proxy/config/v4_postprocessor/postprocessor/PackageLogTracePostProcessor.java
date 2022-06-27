@@ -36,4 +36,5 @@ public class PackageLogTracePostProcessor implements BeanPostProcessor {
         log.info("Create proxy: target={} proxy={}", bean.getClass(), proxy.getClass());
         return proxy;
     }
+
 }
