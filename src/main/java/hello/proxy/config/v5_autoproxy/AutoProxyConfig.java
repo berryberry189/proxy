@@ -43,10 +43,12 @@ public class AutoProxyConfig {
     public Advisor advisor3(LogTrace logTrace) {
         // pointcut
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        // noLog는 미포함
         pointcut.setExpression("execution(* hello.proxy.app..*(..)) && !execution(* hello.proxy.app..noLog(..))"); // 포인트컷 위치 설정
 
         // advice
         LogTraceAdvice advice = new LogTraceAdvice(logTrace);
         return new DefaultPointcutAdvisor(pointcut, advice);
     }
+
 }
