@@ -38,3 +38,46 @@
 - 데코레이터 패턴: 원래 서버가 제공하는 기능에 더해서 **부가 기능을 수행**한다. 
 <br> 예) 요청 값이나, 응답 값을 중간에 변형한다.
 <br> 예) 실행 시간을 측정해서 추가 로그를 남긴다.  
+
+# 스프링이 지원하는 프록시 패턴
+
+### 이전
+
+- 인터페이스가 있는 경우 ⇒ JDK 동적 프록시 적용 (InvocationHandler)
+- 인터페이스가 없는 경우 ⇒ cglib 적용 (MethodInterceptor)
+
+### 스프링 제공
+
+- 두가지 상황을 통합한 프록시 팩토리 기능을 제공!
+- 프록시 팩토리는 인터페이스가 있으면 JDK 동적 프록시 적용하고 없으면 cglib 적용하며, 이 설정을 변경할 수 있다.
+- 개발자는 InvocationHandler 나 MethodInterceptor를 사용하지 않고 **Advice**를 사용한다(스프링 제공)
+    - MethodInterceptor 사용(cglib 가 사용하는 것과는 다름)
+    - MethodInterceptor는 Interceptor를 상속하고 Interceptor는 **Advice**를 상속한다
+
+### 포인트 컷
+
+- 어디에 부가기능을 적용할지 적용하지 말지 판단하는 필터링 로직
+- 주로 클래스(`ClassFilter`) & 메서드(`MethodMatcher`) 명으로 필터링한다
+- 어딴 ‘포인트’에 기능을 적용할지 잘라서(cut) 구분하는 것
+- 스프링 제공 포인트컷
+    - `NameMatchMethodPointcut` : 메서드 이름을 기반으로 매칭. 내부에서는 `PatternMatchUtils`  를 사용한다. ex) *xxx* 허용
+    - `Pointcut.TRUE`  : 항상 true 를 반환하는 포인트 컷
+    - `JdkRegexpMethodPointcut` : jdk 정규 표현식을 기반으로 포인트컷을 매칭
+    - `AnnotationPointcut` : 애노테이션으로 매칭
+    - `**AspectJExpressionPointcut**` : aspectJ 표현식으로 매칭. 사용하기 편리하고 기능이 가장 많기 때문에 실무에서 가장 많이 사용.
+
+### 어드바이스
+
+- 프록시가 호출하는 부가기능 로직 (프록시 로직)
+
+### 어드바이저
+
+- 포인트컷 1 + 어드바이스 1
+- `new DefaultPointcutAdvisor`  Advisor 인터페이스의 가장 일반적인 구현체
+    
+    
+
+### 중요
+
+- 스프링은 AOP를 적용할때 최적화를 진행하여 프록시를 하나만 만들고, 하나의 프록시에서 여러 어드바이저를 적용한다.
+- 하나의 target에 여러 AOP가 동시에 적용되어도, 스프링 AOPSMS target 마다 하나의 프록시만 생성한다.
