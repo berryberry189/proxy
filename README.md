@@ -122,3 +122,11 @@
     - advisor1 의 포인트컷만 만족 프록시1개 생성, 프록시에 advisor1 만 포함
     - advisor1 , advisor2 의 포인트컷을 모두 만족 프록시1개 생성, 프록시에 advisor1 , advisor2 모두 포함
     - advisor1 , advisor2 의 포인트컷을 모두 만족하지 않음 프록시가 생성되지 않음
+ 
+<br><br>
+# @Aspect AOP
+
+### **@Aspect 프록시**
+
+- 자동 프록시 생성기 ( AnnotationAwareAspectJAutoProxyCreator )는 Advisor 를 자동으로 찾아와서 필요한 곳에 프록시를 생성하고 적용해준다
+- 자동 프록시 생성기는 여기에 추가로 하나의 역할을 더 하는데, 바로 @Aspect 를 찾아서 이것을 Advisor 로 만들어준다
